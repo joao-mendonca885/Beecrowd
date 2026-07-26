@@ -9,6 +9,8 @@
 n = 1
 while n != 0:
     n = int(input())
+    if n == 0:
+        break
     apagados = [None] * n # preenchendo uma lista com none de tamanho n
     m = 0
     while apagados[n-1] != 13: #enquanto o ultimo nao for 13
@@ -20,10 +22,6 @@ while n != 0:
         while len(apagados) != n: #enquanto todos as cidades nao estiverem apagadas
             apagados.append(totais[c])
             totais.remove(totais[c])
-            if c + m - 1 == 0:
-                c = 0
-            else:
-                c = (c + m - 1) % len(totais)            
             if apagados[cont] == 13: #se apagou a cidade 13
                 if cont == n-1: # se a ultima cidade apagada foi a 13
                     print(m)
@@ -31,6 +29,10 @@ while n != 0:
                 else:
                     apagados = [None] * n
                     break
+            if c + m - 1 == 0:
+                c = 0
+            elif len(totais) != 0:
+                c = (c + m - 1) % len(totais)           
             cont = cont + 1     
         
     
